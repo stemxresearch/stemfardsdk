@@ -1,5 +1,5 @@
 [project]
-name = "stemfard_sdk"
+name = "stemfardsdk"
 version = "0.1.0"
 description = "Python SDK for symbolic and numerical computations in STEM"
 authors = [{ name = "STEM Research", email = "sdk@stemxresearch.com" }]
