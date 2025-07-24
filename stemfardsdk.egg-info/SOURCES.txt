@@ -1,0 +1,14 @@
+LICENCE.txt
+README.md
+pyproject.toml
+sdk/__init__.py
+sdk/analyze_matrix.py
+sdk/client.py
+sdk/config.py
+sdk/utils.py
+stemfardsdk.egg-info/PKG-INFO
+stemfardsdk.egg-info/SOURCES.txt
+stemfardsdk.egg-info/dependency_links.txt
+stemfardsdk.egg-info/requires.txt
+stemfardsdk.egg-info/top_level.txt
+tests/test_matrix.py
