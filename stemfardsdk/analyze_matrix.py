@@ -29,13 +29,13 @@ def analyze_matrix(
         
     Examples
     --------
-    >>> from stemxlab_sdk import analyze_matrix
+    >>> from stemfardsdk import analyze_matrix
     >>> matrix = [[1, 2], [3, 4]]
     >>> result = analyze_matrix(matrix)
     >>> print(result.determinant)
     -2.0
 
-    >>> print(result.svd.U)  # Access U matrix from SVD
+    >>> print(result.svd.U)
     [[-0.4045, -0.9145], [-0.9145, 0.4045]]
 
     >>> print(result.as_dict()["trace"])

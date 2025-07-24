@@ -1,1 +1,2 @@
+pip uninstall stemfardsdk
 pip install git+https://github.com/stemxresearch/stemfardsdk.git
