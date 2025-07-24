@@ -1,4 +1,4 @@
-from sdk.analyze_matrix import analyze_matrix
+from stemfardsdk.analyze_matrix import analyze_matrix
 
 
 def test_basic_analysis():
