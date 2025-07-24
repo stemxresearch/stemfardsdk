@@ -2,9 +2,7 @@
 name = "stemfard_sdk"
 version = "0.1.0"
 description = "Python SDK for symbolic and numerical computations in STEM"
-authors = [
-    { name = "STEM Research", email = "sdk@stemxresearch.com" }
-]
+authors = [{ name = "STEM Research", email = "sdk@stemxresearch.com" }]
 readme = "README.md"
 license = { file = "LICENSE" }
 dependencies = [
@@ -12,6 +10,7 @@ dependencies = [
     "sympy >= 1.12",
     "requests >= 2.31",
 ]
+requires-python = ">=3.8"
 
 [project.urls]
 Homepage = "https://github.com/stemxresearch/stemfardsdk"
@@ -21,3 +20,6 @@ Source = "https://github.com/stemxresearch/stemfardsdk"
 [build-system]
 requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
