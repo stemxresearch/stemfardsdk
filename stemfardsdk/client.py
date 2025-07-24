@@ -2,7 +2,10 @@ from typing import Any, Dict
 
 
 class Result:
-    """Wrapper for matrix analysis results with attribute-style access, including nested dicts."""
+    """
+    Wrapper for matrix analysis results with attribute-style access, 
+    including nested dicts.
+    """
 
     def __init__(self, data: Dict[str, Any]):
         self._data = {
