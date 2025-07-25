@@ -1,59 +1,61 @@
-import requests
-from typing import List, Union
+from typing import Dict, List, Union
+
+from stemfardsdk.core import response_result
 from .config import BASE_URL
 from .client import Result
 
-def analyze_matrix(
-    array: List[List[Union[int, float, str]]],
+
+def matrix_analysis(
+    A: List,
+    as_dict: bool = True,
     decimals: int = 8,
-) -> Result:
+) -> Union[Dict, Result]:
     """
-    Analyze a matrix via FastAPI backend and return results with attribute access.
+    Perform matrix analysis on a given matrix A using a remote API.
+
+    Sends matrix `A` to the matrix analysis endpoint and returns key 
+    properties such as rank, determinant, inverse, trace, 
+    eigenvalues, etc., depending on the backend implementation.
 
     Parameters
     ----------
-    array : list of list of int/float/str
-        Matrix to be analyzed.
-    decimals : int, optional (default=8)
-        Number of decimal places to round results.
+    A : List
+        The matrix to be analyzed, represented as a list of lists.
+
+    as_dict : bool, default=True
+        If True, return the result as a dictionary.
+        If False, wrap the result using the `Result` class.
+
+    decimals : int, default=8
+        Number of decimal places to round the numeric results.
 
     Returns
     -------
-    Result
-        Object containing all matrix properties accessible via dot notation.
-
-    Raises
-    ------
-    RuntimeError
-        If request fails or backend returns an error.
-        
+    dict or Result
+        The matrix analysis results in dictionary format or as 
+        a `Result` object.
+    
     Examples
     --------
-    >>> from stemfardsdk import analyze_matrix
-    >>> matrix = [[1, 2], [3, 4]]
-    >>> result = analyze_matrix(matrix)
-    >>> print(result.determinant)
-    -2.0
+    >>> from stemfardsdk.linear_algebra import matrix_analysis
 
-    >>> print(result.svd.U)
-    [[-0.4045, -0.9145], [-0.9145, 0.4045]]
+    >>> A = [[1, 2], [3, 4]]
 
-    >>> print(result.as_dict()["trace"])
-    5.0
+    >>> res = matrix_analysis(A, as_dict=True)
+    >>> print(res)
+
+    >>> res = matrix_analysis(A, as_dict=False)
+    >>> print(res.result)
     """
     api_name = "Matrix analysis"
-    url = f"{BASE_URL}/linear-algebra/analyze-matrix"
+    url = f"{BASE_URL}/linear-algebra/matrix-analysis"
     payload = {
-        "array": array,
+        "A": A,
         "decimals": decimals
     }
 
-    response = requests.post(url, json=payload)
-    if not response.ok:
-        try:
-            detail = response.json()["detail"]
-            raise RuntimeError(f"{api_name} error: {detail}")
-        except Exception:
-            raise RuntimeError(f"Error {response.status_code}: {response.text}")
-
-    return Result(response.json())
+    result = response_result(
+        url=url, payload=payload, api_name=api_name, as_dict=as_dict
+    )
+    
+    return result
