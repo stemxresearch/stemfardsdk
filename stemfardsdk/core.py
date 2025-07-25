@@ -40,7 +40,7 @@ def response_result(
     Raises
     ------
     RuntimeError
-        If the request fails (non-2xx status code), or if the response 
+        If the request fails (non-2D status code), or if the response 
         cannot be parsed as JSON.
     """
     response = requests.post(url, json=payload)
