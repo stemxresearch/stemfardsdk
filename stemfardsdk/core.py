@@ -1,5 +1,6 @@
 from typing import Dict
-from fastapi import requests
+import requests
+
 from stemfardsdk.client import Result
 
 
