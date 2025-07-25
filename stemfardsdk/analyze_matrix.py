@@ -41,7 +41,8 @@ def analyze_matrix(
     >>> print(result.as_dict()["trace"])
     5.0
     """
-    url = f"{BASE_URL}/linear-algebra/matrix-analyzer"
+    api_name = "Matrix analysis"
+    url = f"{BASE_URL}/linear-algebra/analyze-matrix"
     payload = {
         "array": array,
         "decimals": decimals
@@ -51,7 +52,7 @@ def analyze_matrix(
     if not response.ok:
         try:
             detail = response.json()["detail"]
-            raise RuntimeError(f"Matrix analysis error: {detail}")
+            raise RuntimeError(f"{api_name} error: {detail}")
         except Exception:
             raise RuntimeError(f"Error {response.status_code}: {response.text}")
 
